@@ -1,7 +1,10 @@
+import {useParams} from 'react-router-dom';
+
 const Graphs = () => {
+    let urlParams = useParams();
     return (
        <div>
-           hello there
+           Country URL: {urlParams.country}
        </div>
     );
 }
