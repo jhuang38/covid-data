@@ -3,8 +3,7 @@ import {Line} from 'react-chartjs-2';
 import {CategoryScale, Chart, LinearScale, PointElement, LineElement,  Tooltip} from 'chart.js';
 import {capitalizeString, parseDates} from './helperfuncs'
 
-Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip)
-
+Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip);
 
 
 const Graph = ({dataurl, datatype, countrySelect, colour}) => {
@@ -43,7 +42,8 @@ const Graph = ({dataurl, datatype, countrySelect, colour}) => {
                     id: capitalizeString(datatype),
                     label: capitalizeString(datatype),
                     data: yAxis,
-                    backgroundColor: colour
+                    backgroundColor: colour,
+                    borderColor: colour,
                 },
             ]
         })
@@ -53,19 +53,45 @@ const Graph = ({dataurl, datatype, countrySelect, colour}) => {
         responsive: true,
         scales: {
             x: {
+                display: false,
                 title: {
                     display: true,
                     text: 'Date'
+                },
+                ticks: {
+                    display: false
                 }
             },
             y: {
                 title: {
                     display: true,
-                    text: datatype
+                    text: datatype,
+                    font: {
+                        family: 'Glacialindifference-Bold',
+                        size: 12
+                    }
+                },
+                ticks: {
+                    font: {
+                        family: 'Glacialindifference-Regular',
+                        size: 12
+                    }
                 }
-            }
+            },
         },
         plugins: {
+            tooltip: {
+                intersect: false,
+                titleFont: {
+                    family: 'Glacialindifference-Bold',
+                    size: 12
+                },
+                bodyFont: {
+                    family: 'Glacialindifference-Regular',
+                    size: 12
+                },
+                displayColors: false
+            }
         },
         layout: {
 

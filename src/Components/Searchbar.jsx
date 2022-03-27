@@ -1,5 +1,7 @@
 import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const Searchbar = ({styling}) => {
     let navigate = useNavigate();
@@ -12,9 +14,11 @@ const Searchbar = ({styling}) => {
         updateCountryForm(e.target.value)
     }
     return (
-        <form onSubmit = {formSubmit}>
-            <input type="text" name="country" onChange = {textChange}/>
-            <button type="submit"><ion-icon name="search-outline"/></button>
+        <form onSubmit = {formSubmit} className = {`searchbar`}>
+            <input type="text" name="country" onChange = {textChange} placeholder = 'Country' className = 'searchbar-text' required aria-label = 'search'/>
+            <button type="submit" className = 'submit' aria-label = 'submit search'>
+                <FontAwesomeIcon icon = {faSearch}/>
+            </button>
         </form>
     )
 }

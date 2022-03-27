@@ -1,4 +1,17 @@
+@import './_homepage.scss';
+@import './_searchbar.scss';
 @import './_graphs.scss';
+@import './_switchselector.scss';
+
+@font-face {
+    font-family: Glacialindifference-Regular;
+    src: url('./glacial-indifference/GlacialIndifference-Regular.otf') format("opentype");
+}
+
+@font-face {
+    font-family: Glacialindifference-Bold;
+    src: url('./glacial-indifference/GlacialIndifference-Bold.otf') format("opentype");
+}
 
 body {
     height: 100vh;
@@ -13,8 +26,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: GlacialIndifference-Regular;
 }
 
 h1 {
     margin: 0;
+    font-family: GlacialIndifference-Bold
 }
