@@ -2,11 +2,14 @@ import {useEffect, useState} from 'react';
 import {Line} from 'react-chartjs-2';
 import {CategoryScale, Chart, LinearScale, PointElement, LineElement,  Tooltip} from 'chart.js';
 import {capitalizeString, parseDates} from './helperfuncs'
+import { motion, AnimatePresence} from 'framer-motion';
+import {fadeinout} from './animationVariants';
+import Loader from './Loader';
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip);
 
 
-const Graph = ({dataurl, datatype, countrySelect, colour}) => {
+const Graph = ({dataurl, datatype, countrySelect, colour, onGraphRender}) => {
     const country = capitalizeString(countrySelect);
     const [xAxis, setxAxis] = useState([]);
     const [yAxis, setyAxis] = useState([]);
@@ -46,8 +49,12 @@ const Graph = ({dataurl, datatype, countrySelect, colour}) => {
                     borderColor: colour,
                 },
             ]
-        })
-    }, [xAxis, yAxis, datatype, colour])
+        });
+        if (xAxis.length !== 0 && yAxis.length !== 0) {
+            onGraphRender();
+        }
+        
+    }, [xAxis, yAxis, datatype, colour, onGraphRender])
 
     const options = {
         responsive: true,
@@ -100,12 +107,18 @@ const Graph = ({dataurl, datatype, countrySelect, colour}) => {
     
     return (
        <div>
-           <Line
-           data = {chartData}
-           options = {options}
-           
-
-           />
+           <AnimatePresence exitBeforeEnter>
+           {(xAxis.length === 0 || yAxis.length === 0)?
+            <motion.div variants = {fadeinout} initial = 'in' animate = 'in' exit = 'out' key = 'loader'>
+                <Loader/> 
+            </motion.div> 
+    
+            :
+            <motion.div variants = {fadeinout} initial = 'out' animate = 'in' key = 'graph'>
+                <Line data = {chartData} options = {options}/>
+            </motion.div>
+           }
+           </AnimatePresence>
        </div>
     );
 }

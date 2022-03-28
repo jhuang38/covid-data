@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1em;
+    gap: 2em;
     h2 {
         font-size: 36px;
         letter-spacing: 0.125em;
@@ -12,5 +12,11 @@
 }
 .graph-container {
     height: auto;
-    width: 100vh;
+    width: 110vh;
+}
+
+.graphpage-footer {
+    a {
+        text-decoration: none;
+    }
 }

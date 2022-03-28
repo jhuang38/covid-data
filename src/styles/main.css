@@ -98,7 +98,7 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 1em;
+  gap: 2em;
 }
 
 .graphpage h2 {
@@ -109,12 +109,52 @@
 
 .graph-container {
   height: auto;
-  width: 100vh;
+  width: 110vh;
+}
+
+.graphpage-footer a {
+  text-decoration: none;
 }
 
 .selector-container {
   width: 50vh;
   height: 10vh;
+}
+
+.loaderContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.circleContainer {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+}
+
+.circleLoader {
+  display: block;
+  width: 3rem;
+  height: 3rem;
+  border: 0.5rem solid #e9e9e9;
+  border-top: 0.5rem solid #3498db;
+  border-radius: 50%;
+  position: absolute;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  top: 0;
+  left: 0;
 }
 
 @font-face {
