@@ -13,7 +13,6 @@ const Loader = () => {
                 ></motion.span>
             </div>
         </div>
-        
     );
 }
 

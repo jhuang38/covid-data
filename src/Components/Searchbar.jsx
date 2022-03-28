@@ -9,11 +9,11 @@ const Searchbar = ({styling}) => {
     let navigate = useNavigate();
     const [countryFormText, updateCountryForm] = useState('')
     const formSubmit = (e) => {
-        e.preventDefault()
-        navigate(`/graph/${countryFormText}`)
+        e.preventDefault();
+        navigate(`/graph/${countryFormText}`);
     }
     const textChange = (e) => {
-        updateCountryForm(e.target.value)
+        updateCountryForm(e.target.value);
     }
     return (
         <form onSubmit = {formSubmit} className = {`searchbar`}>

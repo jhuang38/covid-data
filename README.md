@@ -5,8 +5,4 @@ Check it out here!
 https://covid-data-graphs.herokuapp.com/
 
 ## Todos
-- add page transitions using Framer Motion
-- add graph loaders
-- add more detail to 404 page
-- add form validation for countries
-- re-add deaths data
+- add easier search queries, e.g should be able to enter "South Korea" instead of "Korea, South"

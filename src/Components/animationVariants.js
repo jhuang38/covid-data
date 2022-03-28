@@ -40,6 +40,19 @@ const fadeinout = {
     },
     out: {
         opacity: 0
+    },
+    transition: {
+        duration: 0.5
     }
 }
-export {pageTransitionVariant, hoverVariant, hoverVariant2, loaderVariant, fadeinout};
+
+const buttonvariant = {
+    hover: {
+        scale: 1.05
+    },
+    click: {
+        scale: 0.95
+    }
+}
+
+export {pageTransitionVariant, hoverVariant, hoverVariant2, loaderVariant, fadeinout, buttonvariant};

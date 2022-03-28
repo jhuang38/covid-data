@@ -1,24 +1,28 @@
 import {useEffect, useState} from 'react';
 import {Line} from 'react-chartjs-2';
-import {CategoryScale, Chart, LinearScale, PointElement, LineElement,  Tooltip} from 'chart.js';
+import {CategoryScale, Chart, LinearScale, PointElement, LineElement,  Tooltip, Legend} from 'chart.js';
 import {capitalizeString, parseDates} from './helperfuncs'
 import { motion, AnimatePresence} from 'framer-motion';
 import {fadeinout} from './animationVariants';
 import Loader from './Loader';
 
-Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip);
+Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 
-const Graph = ({dataurl, datatype, countrySelect, colour, onGraphRender}) => {
-    const country = capitalizeString(countrySelect);
+const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraphRender}) => {
     const [xAxis, setxAxis] = useState([]);
     const [yAxis, setyAxis] = useState([]);
+    const [yAxis2, setyAxis2] = useState([]);
     const [chartData, updateChartData] = useState({
         labels: xAxis,
         datasets: [
             {
                 label: datatype,
                 data: yAxis
+            },
+            {
+                label: datatype2,
+                data: yAxis2
             }
         ]
     });
@@ -38,6 +42,20 @@ const Graph = ({dataurl, datatype, countrySelect, colour, onGraphRender}) => {
     }, [dataurl])
 
     useEffect(() => {
+        fetch(dataurl2, {mode: 'cors'})
+            .then(data => {
+                return data.json()
+            })
+            .then(data => {
+                return parseDates(data.All.dates)
+            })
+            .then(data => {
+                setyAxis2(Object.values(data))
+            })
+            .catch(err => console.error(err))
+    }, [dataurl2])
+
+    useEffect(() => {
         updateChartData({
             labels: xAxis,
             datasets: [
@@ -48,13 +66,20 @@ const Graph = ({dataurl, datatype, countrySelect, colour, onGraphRender}) => {
                     backgroundColor: colour,
                     borderColor: colour,
                 },
+                {
+                    id: capitalizeString(datatype2),
+                    label: capitalizeString(datatype2),
+                    data: yAxis2,
+                    backgroundColor: colour2,
+                    borderColor: colour2,
+                },
             ]
         });
-        if (xAxis.length !== 0 && yAxis.length !== 0) {
+        if (xAxis.length !== 0 && yAxis.length !== 0 && yAxis2.length !== 0) {
             onGraphRender();
         }
         
-    }, [xAxis, yAxis, datatype, colour, onGraphRender])
+    }, [xAxis, yAxis, yAxis2, datatype, datatype2, colour, colour2, onGraphRender])
 
     const options = {
         responsive: true,
@@ -71,12 +96,7 @@ const Graph = ({dataurl, datatype, countrySelect, colour, onGraphRender}) => {
             },
             y: {
                 title: {
-                    display: true,
-                    text: datatype,
-                    font: {
-                        family: 'Glacialindifference-Bold',
-                        size: 12
-                    }
+                    display: false,
                 },
                 ticks: {
                     font: {
@@ -98,6 +118,19 @@ const Graph = ({dataurl, datatype, countrySelect, colour, onGraphRender}) => {
                     size: 12
                 },
                 displayColors: false
+            },
+            legend: {
+                labels: {
+                    color: '#000000',
+                    boxWidth: 15,
+                    boxHeight: 15,
+                    font: {
+                        family: 'Glacialindifference-Regular',
+                        size: 16
+                    },
+                    padding: 16
+                }
+                
             }
         },
         layout: {
@@ -109,7 +142,7 @@ const Graph = ({dataurl, datatype, countrySelect, colour, onGraphRender}) => {
        <div>
            <AnimatePresence exitBeforeEnter>
            {(xAxis.length === 0 || yAxis.length === 0)?
-            <motion.div variants = {fadeinout} initial = 'in' animate = 'in' exit = 'out' key = 'loader'>
+            <motion.div variants = {fadeinout} initial = 'out' animate = 'in' exit = 'out' key = 'loader'>
                 <Loader/> 
             </motion.div> 
     

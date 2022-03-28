@@ -19,7 +19,6 @@ const Graphpage = () => {
         setFooterActive(true);
     }
 
-
     return (
         <motion.div className = 'graphpage'
         variants = {pageTransitionVariant}
@@ -33,9 +32,7 @@ const Graphpage = () => {
             >{country}</motion.h2>
             <Searchbar styling = {'graphpage'}/>
             <div className = "graph-container">
-                <Graph dataurl = {`https://covid-api.mmediagroup.fr/v1/history?country=${country}&status=confirmed`} datatype = {'Total Confirmed Cases'} countrySelect = {country} colour = {'#024790'} onGraphRender = {updateFooter}/>
-                {// <Graph dataurl = {`https://covid-api.mmediagroup.fr/v1/history?country=${country}&status=deaths`} datatype = {'Deaths'} countrySelect = {country} colour = {'#777777'}/>
-                }
+                <Graph dataurl = {`https://covid-api.mmediagroup.fr/v1/history?country=${country}&status=confirmed`} dataurl2 = {`https://covid-api.mmediagroup.fr/v1/history?country=${country}&status=deaths`} datatype = {'Total Confirmed Cases'} datatype2 = {'Total Confirmed Deaths'} countrySelect = {country} colour = {'#195190'} colour2 = {'#a2a2a1'} onGraphRender = {updateFooter}/>
             </div>
             <footer className = 'graphpage-footer'>
                 {footerActive && <Typewriter
@@ -49,12 +46,8 @@ const Graphpage = () => {
                 >
                 </Typewriter>
                 }
-                
             </footer>
-            
         </motion.div>
-
-        
     )
 }
 

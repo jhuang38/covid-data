@@ -6,7 +6,6 @@ import {AnimatePresence} from 'framer-motion';
 import './styles/main.css';
 
 const App = () => {
-  // router will go here
   const location = useLocation();
   return (
     <>
