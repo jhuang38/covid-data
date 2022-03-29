@@ -9,19 +9,28 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 1.5em;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  gap: 1.75em;
+  width: clamp(50vw, 70vw, 90vw);
+  height: auto;
 }
 
 .homepage h2 {
   letter-spacing: 0.25em;
+  text-align: center;
+  margin: 0;
+}
+
+.homepage .homeimage {
+  width: max(300px, 45%);
+  height: auto;
 }
 
 .searchbar {
   --size: 45px;
-  --maxwidth: 90%;
+  --maxwidth: min(500px, 85%);
   border: 2px solid black;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -95,10 +104,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
   gap: 2em;
+  min-height: 80vh;
 }
 
 .graphpage h2 {
@@ -109,7 +119,22 @@
 
 .graph-container {
   height: auto;
-  width: 110vh;
+  width: max(65vw, 300px);
+}
+
+.graphpage-footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: auto;
+  min-width: 50vw;
+  max-width: 70vw;
 }
 
 .graphpage-footer a {
@@ -159,6 +184,7 @@
 
 .page404 {
   height: auto;
+  width: clamp(80%, 50%, 80%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -173,6 +199,16 @@
       -ms-flex-pack: center;
           justify-content: center;
   gap: 1em;
+  font-size: min(1em, 20px);
+}
+
+.page404 h1 {
+  font-size: clamp(2em, 1em, 1em);
+}
+
+.page404 img {
+  width: min(60%, 500px);
+  height: auto;
 }
 
 .primary-button {
@@ -186,10 +222,10 @@
       -ms-flex-pack: center;
           justify-content: center;
   background-color: #88c9f9;
-  font-size: 1.25em;
+  font-size: clamp(1em, 1.25em, 1.5em);
   border: 1px solid black;
   border-radius: 1em;
-  width: 20%;
+  width: max(15%, 175px);
   font-family: GlacialIndifference-Regular;
   font-weight: bold;
   padding: 1em;

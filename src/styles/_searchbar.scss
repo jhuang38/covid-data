@@ -1,6 +1,6 @@
 .searchbar {
     --size: 45px;
-    --maxwidth: 90%;
+    --maxwidth: min(500px, 85%);
     border: 2px solid black;
     display: flex;
     border-radius: 50px;
@@ -10,7 +10,6 @@
     background-color: rgb(246, 246, 246);
     * {
         font-family: Glacialindifference-Regular;
-        
     }
     color: black;
     transition: width 300ms cubic-bezier(.18, .89, .32, 1.10), padding 300ms cubic-bezier(.18, .89, .32, 1.10);

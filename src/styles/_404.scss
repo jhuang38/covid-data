@@ -1,10 +1,19 @@
 .page404 {
     height: auto;
+    width: clamp(80%, 50%, 80%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 1em;
+    font-size: #{"min(1em, 20px)"};
+    h1 {
+        font-size: clamp(2em, 1em, 1em);
+    }
+    img {
+        width: #{"min(60%, 500px)"};
+        height: auto;
+    }
 }
 
 .primary-button {
@@ -12,10 +21,10 @@
     align-items: center;
     justify-content: center;
     background-color: rgb(136, 201, 249);
-    font-size: 1.25em;
+    font-size: clamp(1em, 1.25em, 1.5em);
     border: 1px solid black;
     border-radius: 1em;
-    width: 20%;
+    width: #{"max(15%, 175px)"};
     font-family: GlacialIndifference-Regular;
     font-weight: bold;
     padding: 1em;

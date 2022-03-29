@@ -29,7 +29,7 @@ const Graphpage = () => {
             <motion.h2
             variants = {hoverVariant}
             whileHover='hover'
-            >{country}</motion.h2>
+            >{capitalizeString(country)}</motion.h2>
             <Searchbar styling = {'graphpage'}/>
             <div className = "graph-container">
                 <Graph dataurl = {`https://covid-api.mmediagroup.fr/v1/history?country=${country}&status=confirmed`} dataurl2 = {`https://covid-api.mmediagroup.fr/v1/history?country=${country}&status=deaths`} datatype = {'Total Confirmed Cases'} datatype2 = {'Total Confirmed Deaths'} countrySelect = {country} colour = {'#195190'} colour2 = {'#a2a2a1'} onGraphRender = {updateFooter}/>
