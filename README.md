@@ -7,3 +7,4 @@ https://covid-data-graphs.herokuapp.com/
 ## Todos
 - add easier search queries, e.g should be able to enter "South Korea" instead of "Korea, South"
 - make site more responsive - work on iphones at the very least
+- general polish on website

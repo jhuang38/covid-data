@@ -65,6 +65,8 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                     data: yAxis,
                     backgroundColor: colour,
                     borderColor: colour,
+                    tension: 0.5,
+                    pointRadius: 0
                 },
                 {
                     id: capitalizeString(datatype2),
@@ -72,6 +74,8 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                     data: yAxis2,
                     backgroundColor: colour2,
                     borderColor: colour2,
+                    tension: 0.5,
+                    pointRadius: 0
                 },
             ]
         });
