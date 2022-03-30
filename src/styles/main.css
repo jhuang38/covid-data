@@ -30,7 +30,7 @@
 
 .searchbar {
   --size: 45px;
-  --maxwidth: min(500px, 85%);
+  --maxwidth: min(400px, 85%);
   border: 2px solid black;
   display: -webkit-box;
   display: -ms-flexbox;
