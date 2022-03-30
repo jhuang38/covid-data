@@ -89,7 +89,7 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                 },
             ]
         });
-        if (xAxis.length !== 0 && yAxis.length !== 0 && yAxis2.length !== 0) {
+        if (xAxis.length !== 0 && yAxis.length !== 0 && yAxis2.length !== 0 && validInput) {
             onGraphRender();
         }
         
