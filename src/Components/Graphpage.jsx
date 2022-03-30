@@ -2,14 +2,14 @@ import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Searchbar from "./Searchbar"
 import Graph from './Graph';
-import { capitalizeString } from './helperfuncs';
+import { capitalizeString, graphDisplayCountry, apiInputCountry} from './helperfuncs';
 import { motion } from 'framer-motion';
 import {pageTransitionVariant, hoverVariant} from './animationVariants';
 import Typewriter from 'typewriter-effect';
 
 const Graphpage = () => {
     let urlParams = useParams();
-    const [country, setCountry] = useState(capitalizeString(urlParams.country));
+    const [country, setCountry] = useState(graphDisplayCountry(urlParams.country));
     useEffect(() => {
         setCountry(urlParams.country)
     }, [urlParams.country])
@@ -29,10 +29,10 @@ const Graphpage = () => {
             <motion.h2
             variants = {hoverVariant}
             whileHover='hover'
-            >{capitalizeString(country)}</motion.h2>
+            >{graphDisplayCountry(country)}</motion.h2>
             <Searchbar styling = {'graphpage'}/>
             <div className = "graph-container">
-                <Graph dataurl = {`https://covid-api.mmediagroup.fr/v1/history?country=${country}&status=confirmed`} dataurl2 = {`https://covid-api.mmediagroup.fr/v1/history?country=${country}&status=deaths`} datatype = {'Total Confirmed Cases'} datatype2 = {'Total Confirmed Deaths'} countrySelect = {country} colour = {'#195190'} colour2 = {'#a2a2a1'} onGraphRender = {updateFooter}/>
+                <Graph dataurl = {`https://covid-api.mmediagroup.fr/v1/history?country=${apiInputCountry(country)}&status=confirmed`} dataurl2 = {`https://covid-api.mmediagroup.fr/v1/history?country=${apiInputCountry(country)}&status=deaths`} datatype = {'Total Confirmed Cases'} datatype2 = {'Total Confirmed Deaths'} countrySelect = {country} colour = {'#195190'} colour2 = {'#a2a2a1'} onGraphRender = {updateFooter}/>
             </div>
             <footer className = 'graphpage-footer'>
                 {footerActive && <Typewriter

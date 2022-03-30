@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useRef} from 'react';
 import {Line} from 'react-chartjs-2';
 import {CategoryScale, Chart, LinearScale, PointElement, LineElement,  Tooltip, Legend} from 'chart.js';
 import {capitalizeString, parseDates} from './helperfuncs'
@@ -13,6 +13,7 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
     const [xAxis, setxAxis] = useState([]);
     const [yAxis, setyAxis] = useState([]);
     const [yAxis2, setyAxis2] = useState([]);
+    const validInput = useRef(true);
     const [chartData, updateChartData] = useState({
         labels: xAxis,
         datasets: [
@@ -32,6 +33,11 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                 return data.json()
             })
             .then(data => {
+                // if an invalid input is detected
+                if (!data.All) {
+                    validInput.current = false;
+                }
+                validInput.current = true;
                 return parseDates(data.All.dates)
             })
             .then(data => {
@@ -47,6 +53,10 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                 return data.json()
             })
             .then(data => {
+                if (!data.All) {
+                    validInput.current = false;
+                }
+                validInput.current = true;
                 return parseDates(data.All.dates)
             })
             .then(data => {
