@@ -7,5 +7,5 @@ https://covid-data-graphs.herokuapp.com/
 Note: This app can be rather slow to load initially, you may see a timeout error with Heroku initially. Simply reload the page a few times and it should work :)
 
 ## Todos
-- add easier search queries, e.g should be able to enter "South Korea" instead of "Korea, South"
+- modal where there is a list of all possible location inputs
 - general polish on website
