@@ -55,4 +55,19 @@ const buttonvariant = {
     }
 }
 
-export {pageTransitionVariant, hoverVariant, hoverVariant2, loaderVariant, fadeinout, buttonvariant};
+const dropinVariant = {
+    hidden: {
+        y: '-100vh',
+        opacity: 0,
+    },
+    visible: {
+        y: 0,
+        opacity: 1
+    },
+    exit: {
+        y: '100vh',
+        opacity: 0
+    }
+}
+
+export {pageTransitionVariant, hoverVariant, hoverVariant2, loaderVariant, fadeinout, buttonvariant, dropinVariant};
