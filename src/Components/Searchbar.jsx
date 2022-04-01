@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -7,17 +7,14 @@ import { hoverVariant2 } from './animationVariants';
 
 const Searchbar = ({styling}) => {
     let navigate = useNavigate();
-    const [countryFormText, updateCountryForm] = useState('')
+    const countryFormInput = useRef();
     const formSubmit = (e) => {
         e.preventDefault();
-        navigate(`/graph/${countryFormText}`);
-    }
-    const textChange = (e) => {
-        updateCountryForm(e.target.value);
+        navigate(`/graph/${countryFormInput.current.value}`);
     }
     return (
         <form onSubmit = {formSubmit} className = {`searchbar`}>
-            <input type="text" name="country" onChange = {textChange} placeholder = 'Country' className = 'searchbar-text' required aria-label = 'search'/>
+            <input type="text" name="country" placeholder = 'Country' className = 'searchbar-text' required aria-label = 'search' ref = {countryFormInput}/>
             <motion.button type="submit" className = 'submit' aria-label = 'submit search'
             variants = {hoverVariant2}
             whileHover = 'hover'

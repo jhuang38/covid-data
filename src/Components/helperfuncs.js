@@ -39,6 +39,18 @@ export function graphDisplayCountry(rawinput) {
     }
 }
 
+export function modalDisplayCountry(countrytext) {
+    // i love taiwan and south korea
+    switch(countrytext) {
+        case 'Taiwan*':
+            return 'Taiwan';
+        case 'Korea, South':
+            return 'South Korea';
+        default:
+            return countrytext;
+    }
+}
+
 
 export function parseDates(dateobject) {
     return Object.keys(dateobject).sort().reduce((obj, key) => {
