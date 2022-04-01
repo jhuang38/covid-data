@@ -7,5 +7,4 @@ https://covid-data-graphs.herokuapp.com/
 Note: This app can be rather slow to load initially, you may see a timeout error with Heroku initially. Simply reload the page a few times and it should work :)
 
 ## Todos
-- modal where there is a list of all possible location inputs
-- general polish on website
+- general polish on website - please give suggestions! I'm always looking to improve.
