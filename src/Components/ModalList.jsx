@@ -40,7 +40,7 @@ const ModalList = () => {
                         initial = 'initial'
                         whileInView = 'animate'
                         exit = 'exit'
-                        whileHover = {{x: 20}}
+                        whileHover = {{x: 15}}
                         onClick = {itemClick}
                         >{modalDisplayCountry(country)}</motion.li>
                         })
