@@ -1,6 +1,7 @@
 import {motion} from 'framer-motion';
 import Backdrop from './Backdrop';
 import {dropinVariant} from './animationVariants'
+import ModalList from './ModalList';
 
 const Modal = ({handleClose}) => {
     const modalClick = (e) => {
@@ -15,7 +16,8 @@ const Modal = ({handleClose}) => {
             animate = 'visible'
             exit = 'exit'
             >
-                <h1>Hi there</h1>
+                <h1>Supported Locations</h1>
+                <ModalList/>
 
             </motion.div>
         </Backdrop>

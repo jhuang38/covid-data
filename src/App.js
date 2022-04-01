@@ -14,6 +14,7 @@ const App = () => {
           <Route path = '/' element = {<Homepage/>}/>
           <Route path = '/graph'>
             <Route path = ':country' element = {<Graphpage/>}/>
+            <Route path = '*' element = {<MissingContent/>}/>
           </Route>
           <Route path = '*' element = {<MissingContent/>}/>
         </Routes>

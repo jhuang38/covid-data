@@ -105,7 +105,8 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                     text: 'Date'
                 },
                 ticks: {
-                    display: false
+                    display: false,
+                    beginAtZero: true
                 }
             },
             y: {
@@ -116,7 +117,8 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                     font: {
                         family: 'Glacialindifference-Regular',
                         size: 12
-                    }
+                    },
+                    beginAtZero: true
                 }
             },
         },
@@ -155,7 +157,7 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
     return (
        <div>
            <AnimatePresence exitBeforeEnter>
-           {(xAxis.length === 0 || yAxis.length === 0)?
+           {(xAxis.length === 0 || yAxis.length === 0 || yAxis2.length === 0)?
             <motion.div variants = {fadeinout} initial = 'out' animate = 'in' exit = 'out' key = 'loader'>
                 <Loader/> 
             </motion.div> 

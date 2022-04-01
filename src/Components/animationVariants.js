@@ -70,4 +70,16 @@ const dropinVariant = {
     }
 }
 
-export {pageTransitionVariant, hoverVariant, hoverVariant2, loaderVariant, fadeinout, buttonvariant, dropinVariant};
+const modalListVariant = {
+    initial: {
+        opacity: 0,
+    },
+    animate: {
+        opacity: 1,
+    },
+    exit: {
+        opacity: 0,
+    }
+}
+
+export {pageTransitionVariant, hoverVariant, hoverVariant2, loaderVariant, fadeinout, buttonvariant, dropinVariant, modalListVariant};
