@@ -1,4 +1,4 @@
-import {AnimatePresence, motion} from 'framer-motion';
+import {motion} from 'framer-motion';
 import {useNavigate} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import Loader from './Loader';
@@ -31,9 +31,8 @@ const ModalList = () => {
                 (countryList.length === 0)?
                 <Loader/>:
                 <ul>
-                    {
-                    <AnimatePresence exitBeforeEnter>
-                        {countryList.map(country => {
+                {
+                    countryList.map(country => {
                         return <motion.li
                         key = {country}
                         variants = {modalListVariant}
@@ -43,10 +42,7 @@ const ModalList = () => {
                         whileHover = {{x: 15}}
                         onClick = {itemClick}
                         >{modalDisplayCountry(country)}</motion.li>
-                        })
-                        }  
-                    </AnimatePresence>
-                    
+                    })
                 }
                 </ul>
             }

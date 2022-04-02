@@ -143,6 +143,33 @@
   text-decoration: none;
 }
 
+.graph-filler {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 1em;
+}
+
+.graph-filler .graph-heading {
+  cursor: default;
+}
+
+.graph-filler img {
+  height: auto;
+  width: max(15%, 100px);
+}
+
+.graph-filler h3 {
+  font-size: 1.5em;
+  margin: 0;
+}
+
 .selector-container {
   width: 50vh;
   height: 10vh;

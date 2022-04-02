@@ -1,10 +1,11 @@
-import {useEffect, useState, useRef} from 'react';
+import {useEffect, useState} from 'react';
 import {Line} from 'react-chartjs-2';
 import {CategoryScale, Chart, LinearScale, PointElement, LineElement,  Tooltip, Legend} from 'chart.js';
 import {capitalizeString, parseDates} from './helperfuncs'
 import { motion, AnimatePresence} from 'framer-motion';
 import {fadeinout} from './animationVariants';
 import Loader from './Loader';
+import GraphNotFound from './GraphNotFound';
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
@@ -13,7 +14,7 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
     const [xAxis, setxAxis] = useState([]);
     const [yAxis, setyAxis] = useState([]);
     const [yAxis2, setyAxis2] = useState([]);
-    const validInput = useRef(true);
+    const [validInput, setValidInput] = useState(true);
     const [chartData, updateChartData] = useState({
         labels: xAxis,
         datasets: [
@@ -34,10 +35,10 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
             })
             .then(data => {
                 // if an invalid input is detected
+                setValidInput(true);
                 if (!data.All) {
-                    validInput.current = false;
+                    setValidInput(false);
                 }
-                validInput.current = true;
                 return parseDates(data.All.dates)
             })
             .then(data => {
@@ -53,10 +54,10 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                 return data.json()
             })
             .then(data => {
+                setValidInput(true);
                 if (!data.All) {
-                    validInput.current = false;
+                    setValidInput(false);
                 }
-                validInput.current = true;
                 return parseDates(data.All.dates)
             })
             .then(data => {
@@ -93,7 +94,7 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
             onGraphRender();
         }
         
-    }, [xAxis, yAxis, yAxis2, datatype, datatype2, colour, colour2, onGraphRender])
+    }, [xAxis, yAxis, yAxis2, datatype, datatype2, colour, colour2, onGraphRender, validInput])
 
     const options = {
         responsive: true,
@@ -157,16 +158,22 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
     return (
        <div>
            <AnimatePresence exitBeforeEnter>
-           {(xAxis.length === 0 || yAxis.length === 0 || yAxis2.length === 0)?
-            <motion.div variants = {fadeinout} initial = 'out' animate = 'in' exit = 'out' key = 'loader'>
-                <Loader/> 
-            </motion.div> 
-    
-            :
-            <motion.div variants = {fadeinout} initial = 'out' animate = 'in' key = 'graph'>
-                <Line data = {chartData} options = {options}/>
-            </motion.div>
-           }
+            {
+                (xAxis.length === 0 || yAxis.length === 0 || yAxis2.length === 0)?
+                    (!validInput)? 
+                    <motion.div variants = {fadeinout} initial = 'out' animate = 'in' exit = 'out' key = 'missing'>
+                        <GraphNotFound/>
+                    </motion.div> 
+                    :
+                    <motion.div variants = {fadeinout} initial = 'out' animate = 'in' exit = 'out' key = 'loader'>
+                        <Loader/> 
+                    </motion.div> 
+            
+                    :
+                    <motion.div variants = {fadeinout} initial = 'out' animate = 'in' key = 'graph'>
+                        <Line data = {chartData} options = {options}/>
+                    </motion.div>
+            }
            </AnimatePresence>
        </div>
     );

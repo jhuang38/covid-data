@@ -28,3 +28,21 @@
         text-decoration: none;
     }
 }
+
+.graph-filler {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    .graph-heading {
+        cursor: default;
+    }
+    img {
+        height: auto;
+        width: #{'max(15%, 100px)'};
+    }
+    h3 {
+        font-size: 1.5em;
+        margin: 0;
+    }
+}
