@@ -17,7 +17,7 @@ const ModalList = ({searchtext}) => {
             .then(jsonresponse => {return Object.keys(jsonresponse)})
             .then(countrylist => {
                 setCountryList(countrylist);
-                localStorage.setItem('stored_countrylist', countrylist)
+                localStorage.setItem('stored_countrylist', countrylist.map(modalDisplayCountry))
             })
         }
     }, []);
