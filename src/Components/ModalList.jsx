@@ -13,12 +13,8 @@ const ModalList = ({searchtext}) => {
             setCountryList(localStorage.getItem('stored_countrylist').split(','));
         } else {
             fetch('https://covid-api.mmediagroup.fr/v1/history?status=deaths', {mode: 'cors'})
-            .then(fetchresponse => {
-                return fetchresponse.json()
-            })
-            .then(jsonresponse => {
-                return Object.keys(jsonresponse);
-            })
+            .then(fetchresponse => {return fetchresponse.json()})
+            .then(jsonresponse => {return Object.keys(jsonresponse)})
             .then(countrylist => {
                 setCountryList(countrylist);
                 localStorage.setItem('stored_countrylist', countrylist)
