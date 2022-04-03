@@ -26,16 +26,12 @@ const ModalList = ({searchtext}) => {
         }
     }, []);
 
-    const itemClick = (e) => {
-        navigate(`/graph/${e.target.textContent}`);
-    }
+    const itemClick = (e) => navigate(`/graph/${e.target.textContent}`);
 
     const filterSearch = (country) => {
-        if (!searchtext) {
-            return true;
-        }
-        const regex = new RegExp(searchtext, 'gi');
-        return country.match(regex);
+        if (!searchtext) return true;
+        const searchbar_text = new RegExp(searchtext, 'gi');
+        return country.match(searchbar_text);
     }
 
     return (

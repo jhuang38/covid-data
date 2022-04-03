@@ -9,6 +9,9 @@ export function capitalizeString(stringInput) {
 
 // process inputs for api
 export function apiInputCountry(rawinput) {
+    // deal with countries with names including "and"
+    const match_and = / and /gi;
+    if (rawinput.match(match_and)) return rawinput;
     const parsedInput = capitalizeString(rawinput);
     switch (parsedInput.toLowerCase()) {
         case 'us':
@@ -17,40 +20,28 @@ export function apiInputCountry(rawinput) {
         case 'usa':
             return 'US';
         case 'taiwan':
-            return 'Taiwan*'
+            return 'Taiwan*';
         case 'uk':
         case 'britain':
         case 'great britain':
             return 'United Kingdom';
         case 'south korea':
             return 'Korea, South';
-        // consider using regex matching for this
-        case 'antigua and barbuda':
-        case 'bosnia and herzegovina':
-        case 'saint kitts and nevis':
-        case 'saint vincent and the grenadines':
-        case 'sao tome and principe':
-        case 'trinidad and tobago':
-        case 'west bank and gaza':
-            return rawinput;
         default:
             return parsedInput;
     }
 }
 
 export function graphDisplayCountry(rawinput) {
+    // deal with countries with names including "and"
+    const match_and = / and /gi;
+
+    if (rawinput.match(match_and)) return rawinput;
+
     switch(rawinput.toLowerCase()) {
         case 'us':
         case 'usa':
             return rawinput.toUpperCase();
-        case 'antigua and barbuda':
-        case 'bosnia and herzegovina':
-        case 'saint kitts and nevis':
-        case 'saint vincent and the grenadines':
-        case 'sao tome and principe':
-        case 'trinidad and tobago':
-        case 'west bank and gaza':
-            return rawinput;
         default:
             return capitalizeString(rawinput);
     }
@@ -67,7 +58,6 @@ export function modalDisplayCountry(countrytext) {
             return countrytext;
     }
 }
-
 
 export function parseDates(dateobject) {
     return Object.keys(dateobject).sort().reduce((obj, key) => {

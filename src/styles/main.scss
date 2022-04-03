@@ -1,7 +1,6 @@
 @import './_homepage.scss';
 @import './_searchbar.scss';
 @import './_graphs.scss';
-@import './_switchselector.scss';
 @import './_loader.scss';
 @import './_404.scss';
 @import './_modal.scss';
@@ -18,7 +17,6 @@
     font-weight: 700;
     src: local('Glacial Indifference'), url('https://fonts.cdnfonts.com/s/31913/GlacialIndifference-Bold.woff') format('woff');
 }
-
 
 body {
     height: 100vh;

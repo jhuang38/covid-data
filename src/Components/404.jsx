@@ -5,16 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 const MissingContent = () => {
     let navigate = useNavigate();
-    const homeButtonClick = () => {
-        navigate('/');
-    }
+    const homeButtonClick = () => navigate('/');
+
     return (
-        <motion.div className = 'page404'
-        variants = {pageTransitionVariant}
-        initial = 'out'
-        animate = 'in'
-        exit = 'out'
-        >
+        <motion.div className = 'page404' variants = {pageTransitionVariant} initial = 'out' animate = 'in' exit = 'out'>
             <img src={page404logo} alt="404" />
             <h1>Page not Found</h1>
             <p>

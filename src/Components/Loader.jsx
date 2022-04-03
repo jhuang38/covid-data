@@ -3,10 +3,10 @@ import { loaderVariant } from "./animationVariants";
 
 const Loader = () => {
     return (
-        <div className = 'loaderContainer'>
+        <div className = 'loader-container'>
             <h3>Loading...</h3>
-            <div className = 'circleContainer'>  
-                <motion.span className = 'circleLoader'
+            <div className = 'circle-container'>  
+                <motion.span className = 'circle-loader'
                 variants = {loaderVariant}
                 animate = 'animate'
                 transition = {loaderVariant.transition}

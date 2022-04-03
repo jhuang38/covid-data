@@ -11,17 +11,7 @@ Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, L
 const graph_options = {
     responsive: true,
     scales: {
-        x: {
-            display: false,
-            title: {
-                display: true,
-                text: 'Date'
-            },
-            ticks: {
-                display: false,
-                beginAtZero: true
-            }
-        },
+        x: {display: false},
         y: {
             title: {
                 display: false,
@@ -61,26 +51,18 @@ const graph_options = {
             }
         }
     },
-}
+};
 
 const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraphRender}) => {
-    const [xAxis, setxAxis] = useState([]);
-    const [yAxis, setyAxis] = useState([]);
-    const [yAxis2, setyAxis2] = useState([]);
+    const [x_axis, setxAxis] = useState([]);
+    const [y_axis, setyAxis] = useState([]);
+    const [y_axis_2, setyAxis2] = useState([]);
     const [validInput, setValidInput] = useState(true);
     const [chartData, updateChartData] = useState({
-        labels: xAxis,
-        datasets: [
-            {
-                label: datatype,
-                data: yAxis
-            },
-            {
-                label: datatype2,
-                data: yAxis2
-            }
-        ]
+        labels: x_axis,
+        datasets: [setGraphData(datatype, y_axis, colour), setGraphData(datatype2, y_axis_2, colour2)]
     });
+
     useEffect(() => {
         fetch(dataurl, {mode: 'cors'})
             .then(data => {
@@ -88,53 +70,41 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
             })
             .then(data => {
                 // if an invalid input is detected
-                setValidInput(true);
-                if (!data.All) {
-                    setValidInput(false);
-                }
+                setValidInput(!!data.All);
                 return parseDates(data.All.dates)
             })
             .then(data => {
-                setxAxis(Object.keys(data))
-                setyAxis(Object.values(data))
+                setxAxis(Object.keys(data));
+                setyAxis(Object.values(data));
             })
-            .catch(err => console.error(err))
+            .catch(err => console.error(err));
+        
         fetch(dataurl2, {mode: 'cors'})
+            .then(data => {return data.json()})
             .then(data => {
-                return data.json()
-            })
-            .then(data => {
-                setValidInput(true);
-                if (!data.All) {
-                    setValidInput(false);
-                }
+                setValidInput(!!data.All);
                 return parseDates(data.All.dates)
             })
             .then(data => {
                 setyAxis2(Object.values(data))
             })
             .catch(err => console.error(err))
+
     }, [dataurl, dataurl2])
 
     useEffect(() => {
         updateChartData({
-            labels: xAxis,
-            datasets: [
-                setGraphData(datatype, yAxis, colour),
-                setGraphData(datatype2, yAxis2, colour2)
-            ]
+            labels: x_axis,
+            datasets: [setGraphData(datatype, y_axis, colour), setGraphData(datatype2, y_axis_2, colour2)]
         });
-        if (xAxis.length !== 0 && yAxis.length !== 0 && yAxis2.length !== 0 && validInput) {
-            onGraphRender();
-        }
-        
-    }, [xAxis, yAxis, yAxis2, datatype, datatype2, colour, colour2, onGraphRender, validInput])
+        if (x_axis.length !== 0 && y_axis.length !== 0 && y_axis_2.length !== 0 && validInput) onGraphRender();
+    }, [x_axis, y_axis, y_axis_2, datatype, datatype2, colour, colour2, onGraphRender, validInput])
     
     return (
-       <div>
+       <main>
            <AnimatePresence exitBeforeEnter>
             {
-                (xAxis.length === 0 || yAxis.length === 0 || yAxis2.length === 0)?
+                (x_axis.length === 0 || y_axis.length === 0 || y_axis_2.length === 0)?
                     (!validInput)? 
                     <motion.div variants = {fadeinout} initial = 'out' animate = 'in' exit = 'out' key = 'missing'>
                         <GraphNotFound/>
@@ -143,14 +113,13 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                     <motion.div variants = {fadeinout} initial = 'out' animate = 'in' exit = 'out' key = 'loader'>
                         <Loader/> 
                     </motion.div> 
-            
-                    :
-                    <motion.div variants = {fadeinout} initial = 'out' animate = 'in' key = 'graph'>
-                        <Line data = {chartData} options = {graph_options}/>
-                    </motion.div>
+                :
+                <motion.div variants = {fadeinout} initial = 'out' animate = 'in' key = 'graph'>
+                    <Line data = {chartData} options = {graph_options}/>
+                </motion.div>
             }
            </AnimatePresence>
-       </div>
+       </main>
     );
 }
 

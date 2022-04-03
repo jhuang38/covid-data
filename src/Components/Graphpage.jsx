@@ -2,38 +2,27 @@ import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Searchbutton from './Searchbutton';
 import Graph from './Graph';
+import Modal from './Modal';
 import { graphDisplayCountry, apiInputCountry} from './helperfuncs';
 import { motion, AnimatePresence} from 'framer-motion';
 import {pageTransitionVariant, hoverVariant} from './animationVariants';
 import Typewriter from 'typewriter-effect';
-import Modal from './Modal';
 
 const Graphpage = () => {
     let urlParams = useParams();
     const [country, setCountry] = useState(graphDisplayCountry(urlParams.country));
+
     const [modalOpen, setModalState] = useState(false);
-    const open = () => {
-        setModalState(true);
-    }
-    const close = () => {
-        setModalState(false);
-    }
-    useEffect(() => {
-        setCountry(urlParams.country)
-    }, [urlParams.country])
+    const open = () => setModalState(true);
+    const close = () => setModalState(false);
+
+    useEffect(() => setCountry(urlParams.country), [urlParams.country])
 
     const [footerActive, setFooterActive] = useState(false);
-    const updateFooter = () => {
-        setFooterActive(true);
-    }
+    const updateFooter = () => setFooterActive(true);
 
     return (
-        <motion.div className = 'graphpage'
-        variants = {pageTransitionVariant}
-        initial='out'
-        animate='in'
-        exit='out'
-        >
+        <motion.div className = 'graphpage' variants = {pageTransitionVariant} initial='out' animate='in' exit='out'>
             <motion.h2
             variants = {hoverVariant}
             whileHover='hover'
@@ -58,8 +47,7 @@ const Graphpage = () => {
             <AnimatePresence initial = {false} exitBeforeEnter = {true}>
             {modalOpen && <Modal handleClose = {close}/>}
             </AnimatePresence>
-            
-            
+
         </motion.div>
     )
 }

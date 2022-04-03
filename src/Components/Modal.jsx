@@ -6,12 +6,9 @@ import { useState } from 'react';
 
 const Modal = ({handleClose}) => {
     const [countrySearchText, setSearchText] = useState('');
-    const modalClick = (e) => {
-        e.stopPropagation();
-    }
-    const updateSearchText = (e) => {
-        setSearchText(e.target.value);
-    }
+    const modalClick = (e) => e.stopPropagation();
+    const updateSearchText = (e) => setSearchText(e.target.value);
+    
     return (
         <Backdrop onClick = {handleClose}>
             <motion.div onClick = {modalClick} className = 'modal'
