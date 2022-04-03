@@ -1,13 +1,67 @@
 import {useEffect, useState} from 'react';
 import {Line} from 'react-chartjs-2';
 import {CategoryScale, Chart, LinearScale, PointElement, LineElement,  Tooltip, Legend} from 'chart.js';
-import {capitalizeString, parseDates} from './helperfuncs'
+import {parseDates, setGraphData} from './helperfuncs'
 import { motion, AnimatePresence} from 'framer-motion';
 import {fadeinout} from './animationVariants';
 import Loader from './Loader';
 import GraphNotFound from './GraphNotFound';
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
+const graph_options = {
+    responsive: true,
+    scales: {
+        x: {
+            display: false,
+            title: {
+                display: true,
+                text: 'Date'
+            },
+            ticks: {
+                display: false,
+                beginAtZero: true
+            }
+        },
+        y: {
+            title: {
+                display: false,
+            },
+            ticks: {
+                font: {
+                    family: 'Glacialindifference-Regular',
+                    size: 12
+                },
+                beginAtZero: true
+            }
+        },
+    },
+    plugins: {
+        tooltip: {
+            intersect: false,
+            titleFont: {
+                family: 'Glacialindifference-Bold',
+                size: 12
+            },
+            bodyFont: {
+                family: 'Glacialindifference-Regular',
+                size: 12
+            },
+            displayColors: false
+        },
+        legend: {
+            labels: {
+                color: '#000000',
+                boxWidth: 15,
+                boxHeight: 15,
+                font: {
+                    family: 'Glacialindifference-Regular',
+                    size: 16
+                },
+                padding: 16
+            }
+        }
+    },
+}
 
 const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraphRender}) => {
     const [xAxis, setxAxis] = useState([]);
@@ -66,24 +120,8 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
         updateChartData({
             labels: xAxis,
             datasets: [
-                {
-                    id: capitalizeString(datatype),
-                    label: capitalizeString(datatype),
-                    data: yAxis,
-                    backgroundColor: colour,
-                    borderColor: colour,
-                    tension: 1,
-                    pointRadius: 0
-                },
-                {
-                    id: capitalizeString(datatype2),
-                    label: capitalizeString(datatype2),
-                    data: yAxis2,
-                    backgroundColor: colour2,
-                    borderColor: colour2,
-                    tension: 1,
-                    pointRadius: 0
-                },
+                setGraphData(datatype, yAxis, colour),
+                setGraphData(datatype2, yAxis2, colour2)
             ]
         });
         if (xAxis.length !== 0 && yAxis.length !== 0 && yAxis2.length !== 0 && validInput) {
@@ -91,62 +129,6 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
         }
         
     }, [xAxis, yAxis, yAxis2, datatype, datatype2, colour, colour2, onGraphRender, validInput])
-
-    const options = {
-        responsive: true,
-        scales: {
-            x: {
-                display: false,
-                title: {
-                    display: true,
-                    text: 'Date'
-                },
-                ticks: {
-                    display: false,
-                    beginAtZero: true
-                }
-            },
-            y: {
-                title: {
-                    display: false,
-                },
-                ticks: {
-                    font: {
-                        family: 'Glacialindifference-Regular',
-                        size: 12
-                    },
-                    beginAtZero: true
-                }
-            },
-        },
-        plugins: {
-            tooltip: {
-                intersect: false,
-                titleFont: {
-                    family: 'Glacialindifference-Bold',
-                    size: 12
-                },
-                bodyFont: {
-                    family: 'Glacialindifference-Regular',
-                    size: 12
-                },
-                displayColors: false
-            },
-            legend: {
-                labels: {
-                    color: '#000000',
-                    boxWidth: 15,
-                    boxHeight: 15,
-                    font: {
-                        family: 'Glacialindifference-Regular',
-                        size: 16
-                    },
-                    padding: 16
-                }
-                
-            }
-        },
-    }
     
     return (
        <div>
@@ -164,7 +146,7 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
             
                     :
                     <motion.div variants = {fadeinout} initial = 'out' animate = 'in' key = 'graph'>
-                        <Line data = {chartData} options = {options}/>
+                        <Line data = {chartData} options = {graph_options}/>
                     </motion.div>
             }
            </AnimatePresence>

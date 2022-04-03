@@ -1,6 +1,6 @@
 import {useParams} from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import Searchbar from "./Searchbar"
+import Searchbutton from './Searchbutton';
 import Graph from './Graph';
 import { graphDisplayCountry, apiInputCountry} from './helperfuncs';
 import { motion, AnimatePresence} from 'framer-motion';
@@ -38,7 +38,7 @@ const Graphpage = () => {
             variants = {hoverVariant}
             whileHover='hover'
             >{graphDisplayCountry(country)}</motion.h2>
-            <Searchbar onClick = {open}/>
+            <Searchbutton onClick = {open}/>
             <div className = "graph-container">
                 <Graph dataurl = {`https://covid-api.mmediagroup.fr/v1/history?country=${apiInputCountry(country)}&status=confirmed`} dataurl2 = {`https://covid-api.mmediagroup.fr/v1/history?country=${apiInputCountry(country)}&status=deaths`} datatype = {'Total Confirmed Cases'} datatype2 = {'Total Confirmed Deaths'} countrySelect = {country} colour = {'#195190'} colour2 = {'#a2a2a1'} onGraphRender = {updateFooter}/>
             </div>

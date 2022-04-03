@@ -9,7 +9,10 @@ const ModalList = ({searchtext}) => {
     let navigate = useNavigate();
     const [countryList, setCountryList] = useState([]);
     useEffect(() => {
-        fetch('https://covid-api.mmediagroup.fr/v1/history?status=deaths', {mode: 'cors'})
+        if (localStorage.getItem('stored_countrylist')) {
+            setCountryList(localStorage.getItem('stored_countrylist').split(','));
+        } else {
+            fetch('https://covid-api.mmediagroup.fr/v1/history?status=deaths', {mode: 'cors'})
             .then(fetchresponse => {
                 return fetchresponse.json()
             })
@@ -18,7 +21,9 @@ const ModalList = ({searchtext}) => {
             })
             .then(countrylist => {
                 setCountryList(countrylist);
+                localStorage.setItem('stored_countrylist', countrylist)
             })
+        }
     }, []);
 
     const itemClick = (e) => {
@@ -34,7 +39,7 @@ const ModalList = ({searchtext}) => {
     }
 
     return (
-        <div className = 'modal-list' style = {(countryList.length === 0)? {'overflow-y': 'hidden'} : {'overflow-y': 'scroll'}}>
+        <div className = 'modal-list' style = {(countryList.length === 0)? {'overflowY': 'hidden'} : {'overflowY': 'scroll'}}>
             {
                 (countryList.length === 0)?
                 <Loader/>:

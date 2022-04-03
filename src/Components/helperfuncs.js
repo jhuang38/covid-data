@@ -24,6 +24,7 @@ export function apiInputCountry(rawinput) {
             return 'United Kingdom';
         case 'south korea':
             return 'Korea, South';
+        // consider using regex matching for this
         case 'antigua and barbuda':
         case 'bosnia and herzegovina':
         case 'saint kitts and nevis':
@@ -73,4 +74,16 @@ export function parseDates(dateobject) {
         obj[key] = dateobject[key];
         return obj;
     }, {})
+}
+
+export function setGraphData(data_label, y_axis_data, colour) {
+    return {
+        id: capitalizeString(data_label),
+        label: capitalizeString(data_label),
+        data: y_axis_data,
+        backgroundColor: colour,
+        borderColor: colour,
+        tension: 1,
+        pointRadius: 0
+    }
 }

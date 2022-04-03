@@ -3,7 +3,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { motion } from 'framer-motion';
 import { hoverVariant2 } from './animationVariants';
 
-const Searchbar = ({onClick}) => {
+const Searchbutton = ({onClick}) => {
     return (
         <>
             <motion.button type="submit" className = 'submit' aria-label = 'submit search'
@@ -21,8 +21,7 @@ const Searchbar = ({onClick}) => {
                 <FontAwesomeIcon icon = {faSearch}/>
             </motion.button>
         </>
-
     )
 }
 
-export default Searchbar
+export default Searchbutton
