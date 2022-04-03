@@ -24,6 +24,14 @@ export function apiInputCountry(rawinput) {
             return 'United Kingdom';
         case 'south korea':
             return 'Korea, South';
+        case 'antigua and barbuda':
+        case 'bosnia and herzegovina':
+        case 'saint kitts and nevis':
+        case 'saint vincent and the grenadines':
+        case 'sao tome and principe':
+        case 'trinidad and tobago':
+        case 'west bank and gaza':
+            return rawinput;
         default:
             return parsedInput;
     }
@@ -34,6 +42,14 @@ export function graphDisplayCountry(rawinput) {
         case 'us':
         case 'usa':
             return rawinput.toUpperCase();
+        case 'antigua and barbuda':
+        case 'bosnia and herzegovina':
+        case 'saint kitts and nevis':
+        case 'saint vincent and the grenadines':
+        case 'sao tome and principe':
+        case 'trinidad and tobago':
+        case 'west bank and gaza':
+            return rawinput;
         default:
             return capitalizeString(rawinput);
     }

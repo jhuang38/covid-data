@@ -5,7 +5,7 @@ import Loader from './Loader';
 import {modalDisplayCountry} from './helperfuncs';
 import { modalListVariant } from './animationVariants';
 
-const ModalList = () => {
+const ModalList = ({searchtext}) => {
     let navigate = useNavigate();
     const [countryList, setCountryList] = useState([]);
     useEffect(() => {
@@ -25,6 +25,14 @@ const ModalList = () => {
         navigate(`/graph/${e.target.textContent}`);
     }
 
+    const filterSearch = (country) => {
+        if (!searchtext) {
+            return true;
+        }
+        const regex = new RegExp(searchtext, 'gi');
+        return country.match(regex);
+    }
+
     return (
         <div className = 'modal-list' style = {(countryList.length === 0)? {'overflow-y': 'hidden'} : {'overflow-y': 'scroll'}}>
             {
@@ -32,8 +40,9 @@ const ModalList = () => {
                 <Loader/>:
                 <ul>
                 {
-                    countryList.map(country => {
-                        return <motion.li
+                    countryList.filter(filterSearch).map(country => {
+                        return <motion.li   
+                        className = 'search-result'
                         key = {country}
                         variants = {modalListVariant}
                         initial = 'initial'

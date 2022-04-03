@@ -9,7 +9,6 @@ import GraphNotFound from './GraphNotFound';
 
 Chart.register(CategoryScale, LinearScale, PointElement, LineElement, Tooltip, Legend);
 
-
 const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraphRender}) => {
     const [xAxis, setxAxis] = useState([]);
     const [yAxis, setyAxis] = useState([]);
@@ -46,9 +45,6 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                 setyAxis(Object.values(data))
             })
             .catch(err => console.error(err))
-    }, [dataurl])
-
-    useEffect(() => {
         fetch(dataurl2, {mode: 'cors'})
             .then(data => {
                 return data.json()
@@ -64,7 +60,7 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                 setyAxis2(Object.values(data))
             })
             .catch(err => console.error(err))
-    }, [dataurl2])
+    }, [dataurl, dataurl2])
 
     useEffect(() => {
         updateChartData({
@@ -150,9 +146,6 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                 
             }
         },
-        layout: {
-
-        }
     }
     
     return (
