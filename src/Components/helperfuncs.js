@@ -10,8 +10,8 @@ export function capitalizeString(stringInput) {
 // process inputs for api
 export function apiInputCountry(rawinput) {
     // deal with countries with names including "and"
-    const match_and = / and /gi;
-    if (rawinput.match(match_and)) return rawinput;
+    // deal with Congo (Brazzaville) and (Kinshasa)
+    if (rawinput.match(/ and /gi) || rawinput.match(/congo/gi) || rawinput.match(/-/gi) || rawinput.toLowerCase() === 'ms zaandam') return rawinput;
     const parsedInput = capitalizeString(rawinput);
     switch (parsedInput.toLowerCase()) {
         case 'us':
@@ -27,6 +27,8 @@ export function apiInputCountry(rawinput) {
             return 'United Kingdom';
         case 'south korea':
             return 'Korea, South';
+        case "cote d'ivoire":
+            return "Cote d'Ivoire";
         default:
             return parsedInput;
     }
@@ -34,9 +36,8 @@ export function apiInputCountry(rawinput) {
 
 export function graphDisplayCountry(rawinput) {
     // deal with countries with names including "and"
-    const match_and = / and /gi;
 
-    if (rawinput.match(match_and)) return rawinput;
+    if (rawinput.match(/ and /gi) || rawinput.match(/congo/gi) || rawinput.match(/-/gi) || rawinput.toLowerCase() === 'ms zaandam') return rawinput;
 
     switch(rawinput.toLowerCase()) {
         case 'us':

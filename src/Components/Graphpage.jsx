@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Searchbutton from './Searchbutton';
 import Graph from './Graph';
 import Modal from './Modal';
+import useModalToggle from './useModalToggle';
 import { graphDisplayCountry, apiInputCountry} from './helperfuncs';
 import { motion, AnimatePresence} from 'framer-motion';
 import {pageTransitionVariant, hoverVariant} from './animationVariants';
@@ -12,9 +13,7 @@ const Graphpage = () => {
     let urlParams = useParams();
     const [country, setCountry] = useState(graphDisplayCountry(urlParams.country));
 
-    const [modalOpen, setModalState] = useState(false);
-    const open = () => setModalState(true);
-    const close = () => setModalState(false);
+    const [modalOpen, open, close] = useModalToggle();
 
     useEffect(() => setCountry(urlParams.country), [urlParams.country])
 

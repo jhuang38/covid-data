@@ -26,7 +26,7 @@ const ModalList = ({searchtext}) => {
 
     const filterSearch = (country) => {
         if (!searchtext) return true;
-        const searchbar_text = new RegExp(searchtext, 'gi');
+        const searchbar_text = new RegExp(String(searchtext), 'gi');
         return country.match(searchbar_text);
     }
 

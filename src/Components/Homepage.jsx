@@ -4,12 +4,10 @@ import { motion, AnimatePresence} from 'framer-motion';
 import {pageTransitionVariant, hoverVariant2} from './animationVariants';
 import { useState } from 'react';
 import Modal from './Modal';
+import useModalToggle from './useModalToggle';
 
 const Homepage = () => {
-    const [modalOpen, setModalState] = useState(false);
-    const open = () => setModalState(true);
-    const close = () => setModalState(false);
-    
+    const [modalOpen, open, close] = useModalToggle();
     return (
         <motion.div className = "homepage" variants = {pageTransitionVariant} initial = "out" animate = "in" exit = "out">
             <motion.img src = {logo} alt = 'logo' variants = {hoverVariant2} whileHover = 'hover' className = 'homeimage'/>
