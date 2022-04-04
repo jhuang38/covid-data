@@ -9,13 +9,6 @@ const pageTransitionVariant = {
     }
 }
 
-const hoverVariant = {
-    hover: {
-        y: -2,
-        scale: 1.05,
-    }
-}
-
 const hoverVariant2 = {
     hover: {
         scale: 1.05
@@ -26,11 +19,12 @@ const hoverVariant2 = {
     chover: {
         color: 'rgb(136, 201, 249)',
         backgroundColor: '#000000',
+        scale: 1.05,
         transition: {
             duration: 0.2,
             ease: 'linear'
         }
-    }
+    },
 }
 
 const loaderVariant = {
@@ -51,18 +45,6 @@ const fadeinout = {
     },
     out: {
         opacity: 0
-    },
-    transition: {
-        duration: 0.5
-    }
-}
-
-const buttonvariant = {
-    hover: {
-        scale: 1.05
-    },
-    click: {
-        scale: 0.95
     }
 }
 
@@ -81,16 +63,4 @@ const dropinVariant = {
     }
 }
 
-const modalListVariant = {
-    initial: {
-        opacity: 0,
-    },
-    animate: {
-        opacity: 1,
-    },
-    exit: {
-        opacity: 0,
-    }
-}
-
-export {pageTransitionVariant, hoverVariant, hoverVariant2, loaderVariant, fadeinout, buttonvariant, dropinVariant, modalListVariant};
+export {pageTransitionVariant, hoverVariant2, loaderVariant, fadeinout, dropinVariant};

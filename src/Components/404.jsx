@@ -1,6 +1,6 @@
 import page404logo from '../assets/404page.png';
 import {motion} from 'framer-motion';
-import { buttonvariant, pageTransitionVariant } from './animationVariants';
+import {pageTransitionVariant, hoverVariant2 } from './animationVariants';
 import { useNavigate } from 'react-router-dom';
 
 const MissingContent = () => {
@@ -16,9 +16,9 @@ const MissingContent = () => {
                 unless you just want to vibe here :)
             </p>
             <motion.button className = 'primary-button'
-            variants = {buttonvariant}
-            whileHover = 'hover'
-            whileTap = 'click'
+            variants = {hoverVariant2}
+            whileHover = 'chover'
+            whileTap = 'tap'
             onClick = {homeButtonClick}
             >Home</motion.button>
         </motion.div>

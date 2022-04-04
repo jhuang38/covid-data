@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom';
 import {useState, useEffect} from 'react';
 import Loader from './Loader';
 import {modalDisplayCountry} from './helperfuncs';
-import { modalListVariant } from './animationVariants';
+import {fadeinout} from './animationVariants';
 
 const ModalList = ({searchtext}) => {
     let navigate = useNavigate();
@@ -41,10 +41,10 @@ const ModalList = ({searchtext}) => {
                         return <motion.li   
                         className = 'search-result'
                         key = {country}
-                        variants = {modalListVariant}
-                        initial = 'initial'
-                        whileInView = 'animate'
-                        exit = 'exit'
+                        variants = {fadeinout}
+                        initial = 'out'
+                        whileInView = 'in'
+                        exit = 'out'
                         whileHover = {{x: 15}}
                         onClick = {itemClick}
                         >{modalDisplayCountry(country)}</motion.li>

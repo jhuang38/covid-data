@@ -6,7 +6,7 @@ import Modal from './Modal';
 import useModalToggle from './useModalToggle';
 import { graphDisplayCountry, apiInputCountry} from './helperfuncs';
 import { motion, AnimatePresence} from 'framer-motion';
-import {pageTransitionVariant, hoverVariant} from './animationVariants';
+import {pageTransitionVariant} from './animationVariants';
 import Typewriter from 'typewriter-effect';
 
 const Graphpage = () => {
@@ -22,10 +22,9 @@ const Graphpage = () => {
 
     return (
         <motion.div className = 'graphpage' variants = {pageTransitionVariant} initial='out' animate='in' exit='out'>
-            <motion.h2
-            variants = {hoverVariant}
-            whileHover='hover'
-            >{graphDisplayCountry(country)}</motion.h2>
+            <motion.h2 whileHover={{scale: 1.05}}>
+                {graphDisplayCountry(country)}
+            </motion.h2>
             <Searchbutton onClick = {open}/>
             <div className = "graph-container">
                 <Graph dataurl = {`https://covid-api.mmediagroup.fr/v1/history?country=${apiInputCountry(country)}&status=confirmed`} dataurl2 = {`https://covid-api.mmediagroup.fr/v1/history?country=${apiInputCountry(country)}&status=deaths`} datatype = {'Total Confirmed Cases'} datatype2 = {'Total Confirmed Deaths'} countrySelect = {country} colour = {'#195190'} colour2 = {'#a2a2a1'} onGraphRender = {updateFooter}/>

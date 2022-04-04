@@ -60,6 +60,7 @@
   font-size: 36px;
   letter-spacing: 0.125em;
   margin: 0;
+  text-align: center;
 }
 
 .graph-container {
@@ -194,12 +195,12 @@
           justify-content: center;
   background-color: #88c9f9;
   font-size: clamp(1em, 1.25em, 1.5em);
-  border: 1px solid black;
+  border: 2px solid black;
   border-radius: 1em;
   width: max(15%, 175px);
   font-family: GlacialIndifference-Regular;
   font-weight: bold;
-  padding: 1em;
+  padding: 0.5em;
 }
 
 .backdrop {

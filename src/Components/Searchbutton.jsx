@@ -10,11 +10,7 @@ const Searchbutton = ({onClick}) => {
             variants = {hoverVariant2}
             whileHover = 'chover'
             whileFocus = 'chover'
-            animate = {{
-                color: '#000000',
-                backgroundColor: 'rgb(136, 201, 249)',
-                scale: 1.10
-            }}
+            animate = {{scale: 1.05}}
             whileTap = 'tap'
             onClick = {onClick}
             >
