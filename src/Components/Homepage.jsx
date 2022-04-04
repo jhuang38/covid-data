@@ -2,7 +2,6 @@ import Searchbutton from './Searchbutton';
 import logo from '../assets/logo.png'
 import { motion, AnimatePresence} from 'framer-motion';
 import {pageTransitionVariant, hoverVariant2} from './animationVariants';
-import { useState } from 'react';
 import Modal from './Modal';
 import useModalToggle from './useModalToggle';
 
