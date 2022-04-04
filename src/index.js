@@ -5,7 +5,7 @@ import {BrowserRouter, HashRouter} from 'react-router-dom';
 
 ReactDOM.render(
   // if deploying to something like heroku, change HashRouter to BrowserRouter
-  <React.StrictMode>
+  <React.StrictMode  basename = '/covid-data'>
     <HashRouter>
       <App/>
     </HashRouter>
