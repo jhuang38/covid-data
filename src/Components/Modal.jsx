@@ -2,12 +2,13 @@ import {motion} from 'framer-motion';
 import Backdrop from './Backdrop';
 import {dropinVariant} from './animationVariants'
 import ModalList from './ModalList';
+import { useState } from 'react';
 
 const Modal = ({handleClose}) => {
-    const modalClick = (e) => {
-        e.stopPropagation();
-
-    }
+    const [countrySearchText, setSearchText] = useState('');
+    const modalClick = (e) => e.stopPropagation();
+    const updateSearchText = (e) => setSearchText(e.target.value);
+    
     return (
         <Backdrop onClick = {handleClose}>
             <motion.div onClick = {modalClick} className = 'modal'
@@ -17,8 +18,8 @@ const Modal = ({handleClose}) => {
             exit = 'exit'
             >
                 <h1>Supported Locations</h1>
-                <ModalList/>
-
+                <input type="text" className = 'search' placeholder='Search' onChange = {updateSearchText}/>
+                <ModalList searchtext = {countrySearchText}/>
             </motion.div>
         </Backdrop>
     );

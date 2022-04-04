@@ -29,8 +29,8 @@
 }
 
 .modal {
-    width: #{"min(60%, 400px)"};
-    height: #{"min(60%, 400px)"};
+    width: #{"min(70%, 500px)"};
+    height: #{"min(70%, 500px)"};
     margin: auto;
     padding: 1.5em;
     border-radius: 12px;
@@ -51,6 +51,7 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    gap: 1em;
     ul {
         margin: 0;
         list-style: none;
@@ -63,3 +64,12 @@
         }
     }
 }
+
+.search {
+    width: #{'max(200px, 60%)'};
+    padding: 0.5em;
+    font-size: 1em;
+    font-family: 'Glacialindifference-Regular';     
+    border-radius: 0.5em;
+}
+            

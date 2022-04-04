@@ -9,6 +9,9 @@ export function capitalizeString(stringInput) {
 
 // process inputs for api
 export function apiInputCountry(rawinput) {
+    // deal with countries with names including "and"
+    // deal with Congo (Brazzaville) and (Kinshasa)
+    if (rawinput.match(/ and /gi) || rawinput.match(/congo/gi) || rawinput.match(/-/gi) || rawinput.toLowerCase() === 'ms zaandam') return rawinput;
     const parsedInput = capitalizeString(rawinput);
     switch (parsedInput.toLowerCase()) {
         case 'us':
@@ -17,19 +20,25 @@ export function apiInputCountry(rawinput) {
         case 'usa':
             return 'US';
         case 'taiwan':
-            return 'Taiwan*'
+            return 'Taiwan*';
         case 'uk':
         case 'britain':
         case 'great britain':
             return 'United Kingdom';
         case 'south korea':
             return 'Korea, South';
+        case "cote d'ivoire":
+            return "Cote d'Ivoire";
         default:
             return parsedInput;
     }
 }
 
 export function graphDisplayCountry(rawinput) {
+    // deal with countries with names including "and"
+
+    if (rawinput.match(/ and /gi) || rawinput.match(/congo/gi) || rawinput.match(/-/gi) || rawinput.toLowerCase() === 'ms zaandam') return rawinput;
+
     switch(rawinput.toLowerCase()) {
         case 'us':
         case 'usa':
@@ -51,10 +60,21 @@ export function modalDisplayCountry(countrytext) {
     }
 }
 
-
 export function parseDates(dateobject) {
     return Object.keys(dateobject).sort().reduce((obj, key) => {
         obj[key] = dateobject[key];
         return obj;
     }, {})
+}
+
+export function setGraphData(data_label, y_axis_data, colour) {
+    return {
+        id: capitalizeString(data_label),
+        label: capitalizeString(data_label),
+        data: y_axis_data,
+        backgroundColor: colour,
+        borderColor: colour,
+        tension: 1,
+        pointRadius: 0
+    }
 }

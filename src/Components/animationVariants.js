@@ -18,7 +18,18 @@ const hoverVariant = {
 
 const hoverVariant2 = {
     hover: {
-        scale: 1.04
+        scale: 1.05
+    },
+    tap: {
+        scale: 0.9
+    },
+    chover: {
+        color: 'rgb(136, 201, 249)',
+        backgroundColor: '#000000',
+        transition: {
+            duration: 0.2,
+            ease: 'linear'
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-.loaderContainer {
+.loader-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,13 +7,13 @@
     justify-self: center;
 }
 
-.circleContainer {
+.circle-container {
     position: relative;
     width: 3rem;
     height: 3rem;
 }
 
-.circleLoader {
+.circle-loader {
     display: block;
     width: 3rem;
     height: 3rem;
