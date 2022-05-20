@@ -64,20 +64,20 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
     });
 
     useEffect(() => {
-        fetch(dataurl, {mode: 'cors'})
-            .then(data => {
-                return data.json()
-            })
-            .then(data => {
-                // if an invalid input is detected
-                setValidInput(!!data.All);
-                return parseDates(data.All.dates)
-            })
-            .then(data => {
-                setxAxis(Object.keys(data));
-                setyAxis(Object.values(data));
-            })
-            .catch(err => console.error(err));
+        Promise.all([fetch(dataurl, {mode: 'cors'})
+        .then(data => {
+            return data.json()
+        })
+        .then(data => {
+            // if an invalid input is detected
+            setValidInput(!!data.All);
+            return parseDates(data.All.dates)
+        })
+        .then(data => {
+            setxAxis(Object.keys(data));
+            setyAxis(Object.values(data));
+        })
+        .catch(err => console.error(err)),
         
         fetch(dataurl2, {mode: 'cors'})
             .then(data => {return data.json()})
@@ -89,6 +89,10 @@ const Graph = ({dataurl, dataurl2, datatype, datatype2, colour, colour2, onGraph
                 setyAxis2(Object.values(data))
             })
             .catch(err => console.error(err))
+    ])
+        
+        
+        
 
     }, [dataurl, dataurl2])
 
